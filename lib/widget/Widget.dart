@@ -3,18 +3,16 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:internet_connection_checker_plus/internet_connection_checker_plus.dart';
 import 'package:lottery_kr/Home.dart';
 import 'package:lottery_kr/data/LotteryDetails.dart';
 import 'package:lottery_kr/service/helper_function.dart';
-import 'package:lottery_kr/tab/page/CompareLotto.dart';
-import 'package:lottery_kr/tab/page/QrCodePage.dart';
-import 'package:lottery_kr/tab/page/Result.dart';
-import 'package:lottery_kr/tab/page/auth/LoginPage.dart';
-import 'package:lottery_kr/tab/page/auth/service/DeletedAccounts.dart';
-import 'package:lottery_kr/tab/page/discussion/DiscussionPage.dart';
-import 'package:lottery_kr/tab/page/discussion/ShowBookmarkedPosts.dart';
-import 'package:lottery_kr/tab/page/discussion/ShowLikedPosts.dart';
+import 'package:lottery_kr/page/CompareLotto.dart';
+// import 'package:lottery_kr/page/QrCodePage.dart';
+import 'package:lottery_kr/page/auth/LoginPage.dart';
+import 'package:lottery_kr/service/DeletedAccounts.dart';
+import 'package:lottery_kr/page/discussion/DiscussionPage.dart';
+import 'package:lottery_kr/page/discussion/ShowBookmarkedPosts.dart';
+import 'package:lottery_kr/page/discussion/ShowLikedPosts.dart';
 
 class CommonWidget {
 
@@ -31,8 +29,7 @@ class CommonWidget {
             DrawerHeader(
               padding: EdgeInsets.all(30),
               decoration: BoxDecoration(
-                color: Color.fromARGB(255, 59, 67, 97)
-                // color: Color(0xFF003366)
+                color: const Color.fromARGB(255, 56, 54, 54)
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -259,7 +256,7 @@ class CommonWidget {
     );
   }
 
-  Widget drawerWidgetWithDropdown(Widget dropdown_button2, BuildContext context) {
+  Widget homeDrawerWidget(BuildContext context, List<Color> background) {
     return Drawer(
         child: ListView(
           padding: EdgeInsets.zero,
@@ -267,8 +264,12 @@ class CommonWidget {
             DrawerHeader(
               padding: EdgeInsets.all(30),
               decoration: BoxDecoration(
-                color: Color.fromARGB(255, 59, 67, 97)
-                // color: Color(0xFF003366)
+                gradient: LinearGradient(
+                  begin: Alignment.topLeft,
+                  end: Alignment(0.8, 1),
+                  colors: [background[0], background[1]],
+                  tileMode: TileMode.mirror,
+                ),
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -282,7 +283,6 @@ class CommonWidget {
                       color: Colors.white,
                     ),
                   ),
-                  dropdown_button2
                 ],
               )
             ),
@@ -310,37 +310,37 @@ class CommonWidget {
                 );
               },
             ),
-            ListTile(
-              leading: Icon(Icons.attach_money),
-              title: Text("result".tr()),
-              onTap: () async {
-                Navigator.pop(context);
-                bool result = await InternetConnection().hasInternetAccess;
-                if (result) {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => Result()),
-                  );
-                }
-                else {
-                  showDialog(
-                    context: context,
-                    builder: (context) => AlertDialog(
-                      title: Text("wifiNeeded".tr()),
-                      content: Text("requireWifi".tr()),
-                      actions: <Widget>[
-                        TextButton(
-                          child: Text('OK'),
-                          onPressed: () {
-                            Navigator.of(context).pop();
-                          },
-                        ),
-                      ],
-                    ),
-                  );
-                }
-              },
-            ),
+            // ListTile(
+            //   leading: Icon(Icons.attach_money),
+            //   title: Text("result".tr()),
+            //   onTap: () async {
+            //     Navigator.pop(context);
+            //     bool result = await InternetConnection().hasInternetAccess;
+            //     if (result) {
+            //       Navigator.push(
+            //         context,
+            //         MaterialPageRoute(builder: (context) => Result()),
+            //       );
+            //     }
+            //     else {
+            //       showDialog(
+            //         context: context,
+            //         builder: (context) => AlertDialog(
+            //           title: Text("wifiNeeded".tr()),
+            //           content: Text("requireWifi".tr()),
+            //           actions: <Widget>[
+            //             TextButton(
+            //               child: Text('OK'),
+            //               onPressed: () {
+            //                 Navigator.of(context).pop();
+            //               },
+            //             ),
+            //           ],
+            //         ),
+            //       );
+            //     }
+            //   },
+            // ),
             ListTile(
               leading: Icon(Icons.people),
               title: Text("discussion".tr()),
@@ -352,25 +352,25 @@ class CommonWidget {
                 );
               },
             ),
-            ListTile(
-              leading: Icon(Icons.qr_code_outlined),
-              title: Text("qr".tr()),
-              onTap: () {
-                Navigator.pop(context);
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => QrCodePage()),
-                );
-              },
-            ),
-            ListTile(
-              leading: Icon(Icons.expand),
-              title: Text("reward".tr()),
-              onTap: () {
-                Navigator.pop(context);
-                showRewardDialog(context);
-              },
-            ),
+            // ListTile(
+            //   leading: Icon(Icons.qr_code_outlined),
+            //   title: Text("qr".tr()),
+            //   onTap: () {
+            //     Navigator.pop(context);
+            //     Navigator.push(
+            //       context,
+            //       MaterialPageRoute(builder: (context) => QrCodePage()),
+            //     );
+            //   },
+            // ),
+            // ListTile(
+            //   leading: Icon(Icons.expand),
+            //   title: Text("reward".tr()),
+            //   onTap: () {
+            //     Navigator.pop(context);
+            //     showRewardDialog(context);
+            //   },
+            // ),
             ListTile(
               leading: Icon(Icons.contact_page),
               title: Text("contact".tr()),

@@ -34,7 +34,20 @@ class NotificationService {
   }
 
   Future<void> showScheduleNotification(int notification_id, String title, String subTitle, String drawnDate, int afterDate) async {
-    var androidDetails = const AndroidNotificationDetails(
+  tz.TZDateTime _timeZoneSetting({
+      required int day,
+    }) {
+      tz.initializeTimeZones();
+      tz.setLocalLocation(tz.local);
+      tz.TZDateTime _now = tz.TZDateTime.now(tz.local);
+      tz.TZDateTime scheduledDate;
+      scheduledDate =
+          tz.TZDateTime(tz.local, _now.year, _now.month, _now.day + day, _now.hour, _now.minute);
+      return scheduledDate;
+    }
+
+    try {
+      var androidDetails = const AndroidNotificationDetails(
       'your_unique_channel_id',
       'your_channel_name',
       importance: Importance.max,
@@ -56,19 +69,10 @@ class NotificationService {
       androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
       uiLocalNotificationDateInterpretation:
           UILocalNotificationDateInterpretation.absoluteTime);
-  }
-
-  tz.TZDateTime _timeZoneSetting({
-      required int day,
-    }) {
-      tz.initializeTimeZones();
-      tz.setLocalLocation(tz.local);
-      tz.TZDateTime _now = tz.TZDateTime.now(tz.local);
-      tz.TZDateTime scheduledDate;
-      scheduledDate =
-          tz.TZDateTime(tz.local, _now.year, _now.month, _now.day + day, _now.hour, _now.minute);
-      return scheduledDate;
+    } catch(e) {
+      print(e.toString());
     }
+  }
 
   Future requestNotificationPermission() async {
     if (Platform.isAndroid) {

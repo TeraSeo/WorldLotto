@@ -1,26 +1,20 @@
 import 'dart:ui';
 
 import 'package:easy_localization/easy_localization.dart';
-// import 'package:email_otp/email_otp.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:lottery_kr/Home.dart';
 import 'package:lottery_kr/firebase_options.dart';
-import 'package:lottery_kr/tab/page/auth/service/AnalyticService.dart';
+import 'package:lottery_kr/service/AnalyticService.dart';
 
-void main() async {
+void main() async { 
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform
   );
   MobileAds.instance.initialize();
-  // EmailOTP.config(
-  //   appName: 'lotto world',
-  //   otpType: OTPType.numeric,
-  //   emailTheme: EmailTheme.v1,
-  // );
 
   String language = 'en';
   if (window.locale.languageCode == 'en' || window.locale.languageCode == 'es' || window.locale.languageCode == 'it' || window.locale.languageCode == 'ko' || window.locale.languageCode == 'ja' || window.locale.languageCode == 'de' || window.locale.languageCode == 'zh' || window.locale.languageCode == 'hi') {
@@ -32,7 +26,7 @@ void main() async {
 
   runApp(EasyLocalization(
     supportedLocales: [Locale('en'), Locale('es'), Locale('it'), Locale('ko'), Locale('ja'), Locale('de'), Locale('zh'), Locale('hi')],
-    path: 'assets/translations', // Path to your language files
+    path: 'assets/translations',
     fallbackLocale: Locale(language),
     child: MyApp(),
   ));
@@ -48,7 +42,7 @@ class MyApp extends StatelessWidget {
       localizationsDelegates: context.localizationDelegates,
       supportedLocales: context.supportedLocales,
       locale: context.locale,
-      debugShowCheckedModeBanner: false,  
+      debugShowCheckedModeBanner: false,
       navigatorObservers: [
         AnalyticService.instance.getAnalyticsObserver()
       ],    
