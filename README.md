@@ -1,17 +1,26 @@
-# lottery_kr
+🌍 World Lotto
+World Lotto is a mobile application built with Flutter that provides users with a simple and intuitive way to check winning numbers and prize information for lotteries around the world.
 
-A new Flutter project.
+📱 Features
+✅ View the latest winning numbers for major lotteries (e.g., Powerball, Mega Millions, EuroMillions, etc.)
 
-## Getting Started
+🌐 Supports international lotteries from countries like the USA, Australia, Spain, and more
 
-This project is a starting point for a Flutter application.
+🔢 Built-in random number generator for each supported lottery
 
-A few resources to get you started if this is your first Flutter project:
+🕒 Automatically updates with the latest results
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+💡 Lightweight and user-friendly UI
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
-# World_Lotto
+📊 Compare lotteries by jackpot size and winning probability
+
+🔧 Built With
+Flutter – Cross-platform mobile development
+
+Dart – App logic and UI code
+
+Firebase – Backend services (e.g., Analytics, Firestore)
+
+
+Play Store Url: https://play.google.com/store/apps/details?id=com.world.lotto
+
