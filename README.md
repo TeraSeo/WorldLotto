@@ -40,9 +40,3 @@ World Lotto is a mobile application built with Flutter that provides users with 
 
 - 3,000+ downloads  
 - ⭐ 4.52 average rating (based on 48 users)
-
----
-
-## 📬 Feedback
-
-For suggestions or bug reports, feel free to use the **Contact** section in the app or open an issue in this repository.
